@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DesignBureau.Entities.Attributes
 {
-    public class TableAttribute
+    public class TableAttribute : Attribute
     {
         public TableAttribute(string name)
         {

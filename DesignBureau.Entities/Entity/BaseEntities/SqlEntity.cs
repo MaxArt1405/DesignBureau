@@ -22,7 +22,7 @@ namespace DesignBureau.Entities.Entity.BaseEntities
         public virtual SqlFields CodeField => SqlFields.None;
 
         [JsonIgnore]
-        public virtual string TableName4Query => $"[DbName].[dbo].{TableName}";//insert Db name
+        public virtual string TableName4Query => $"[Department].[dbo].{TableName}";//insert Db name
 
         [JsonIgnore]
         public virtual string TableName

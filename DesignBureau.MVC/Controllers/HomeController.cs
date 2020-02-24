@@ -1,16 +1,21 @@
-﻿using System;
+﻿using DesignBureau.BLL.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
 namespace DesignBureau.MVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            var manager = new UserManager();
+            var users = manager.GetUser(1);
+            return Json(new { data = users }, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()

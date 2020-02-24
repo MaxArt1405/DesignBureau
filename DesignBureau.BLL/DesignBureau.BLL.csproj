@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Managers\" />
+    <ProjectReference Include="..\DesignBureau.DAL\DesignBureau.DAL.csproj" />
+    <ProjectReference Include="..\DesignBureau.Entities\DesignBureau.Entities.csproj" />
   </ItemGroup>
 
 </Project>

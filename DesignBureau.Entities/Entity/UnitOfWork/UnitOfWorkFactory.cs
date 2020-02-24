@@ -27,7 +27,7 @@ namespace DesignBureau.Entities.Entity.UnitOfWork
         {
             if (_current != null)
                 throw new InvalidOperationException("You cannot start more than one unit of work at the same time.");
-            var connectionString = $"";
+            var connectionString = "Server=MI-NOTEBOOK-AIR\\SQLEXPRESS;Trusted_Connection=true;Database=Department;Connection timeout=30";
             var connection = GetConnection(connectionString);
             connection.Open();
             _current = new UnitOfWork(connection);
