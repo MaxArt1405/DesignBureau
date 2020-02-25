@@ -1,4 +1,5 @@
 ﻿using DesignBureau.BLL.Managers;
+using DesignBureau.Entities.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace DesignBureau.MVC.Controllers
         public ActionResult Index()
         {
             var manager = new UserManager();
-            var users = manager.GetUser(1);
+            var users = manager.GetUsers();
             return Json(new { data = users }, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
         }
 

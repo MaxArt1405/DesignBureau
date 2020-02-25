@@ -5,6 +5,7 @@ using System.Linq;
 using DesignBureau.Entities.Entity.BaseEntities;
 using DesignBureau.Entities.Entity.UnitOfWork;
 using Dapper;
+using Newtonsoft.Json;
 
 namespace DesignBureau.DAL.Repositories
 {
@@ -246,13 +247,13 @@ namespace DesignBureau.DAL.Repositories
             if (string.IsNullOrEmpty(seqName))
                 return result;
 
-            var query = $" SELECT NEXT VALUE FOR [DbName].[dbo].{seqName} as 'Id'";
+            var query = $" SELECT NEXT VALUE FOR [Department].[dbo].{seqName} as 'Id'";
             IUnitOfWork localUnitOfWork = null;
             try
             {
                 if (!UnitOfWorkFactory.IsActive)
                     localUnitOfWork = UnitOfWorkFactory.Start();
-                var r = UnitOfWorkFactory.Current.Connection.Query<BaseEntity>(query).FirstOrDefault();
+                var r = UnitOfWorkFactory.Current.Connection.Query<IdName>(query).FirstOrDefault();
                 if (r != null)
                     result = r.Id;
             }
@@ -268,4 +269,21 @@ namespace DesignBureau.DAL.Repositories
 
         public void Dispose() { }
     }
+    public class IdName
+    {
+        public IdName() { }
+
+        public IdName(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        [JsonProperty("Id")]
+        public int Id { get; set; }
+
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+    }
+
 }

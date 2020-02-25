@@ -27,19 +27,17 @@ namespace DesignBureau.BLL.Managers
             return user;
         }
 
-        public User SaveUser(User user, string confirmPath = null)
+        public User SaveUser(User user)
         {
             user.Permissions = user.PermissionsList != null && user.PermissionsList.Any() ? user.PermissionsList.Sum() : 0;
-            return user.UserId == 0 ? CreateWebUser(user, confirmPath) : Update(user);
+            return user.UserId == 0 ? CreateWebUser(user) : Update(user);
         }
 
-        public User CreateWebUser(User user, string confirmPath)
+        public User CreateWebUser(User user)
         {
             var confirmCode = Guid.NewGuid().ToString();
             user.CreateDate = DateTime.Now;
             user.ConfirmCode = confirmCode;
-            var url = confirmPath == null ? string.Empty : $"{confirmPath.TrimEnd('/')}?confirmationCode={confirmCode}";
-
             user = _service.CreateWebUser(user);
             return user;
         }

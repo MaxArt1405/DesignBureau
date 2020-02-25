@@ -14,6 +14,8 @@
         CreateDate = 9,
         ConfirmationCode = 10,
         IsLocked = 11,
-        Permissions = 12
+        Permissions = 12,
+        DealName = 13,
+        Owner = 14
     }
 }

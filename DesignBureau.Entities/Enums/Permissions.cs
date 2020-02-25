@@ -2,7 +2,7 @@
 { 
     public enum Permissions
     {
-        Designer = 1,
-        LayoutMode = 2,
+        Constructor = 1,
+        Customer = 2
     }
 }
