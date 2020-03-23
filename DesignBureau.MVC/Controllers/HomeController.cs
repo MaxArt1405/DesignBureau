@@ -37,5 +37,27 @@ namespace DesignBureau.MVC.Controllers
             new BaseDalService<Deal>().Update(deal);
             return RedirectToAction("Index");
         }
+        [Admin]
+        [HttpPost]
+        public ActionResult SaveDeal(Deal deal)
+        {
+            new BaseDalService<Deal>().Add(deal);
+            return RedirectToAction("Index");
+        }
+        [Admin]
+        [HttpGet]
+        public ActionResult CreateDeal()
+        {
+            return View();
+        }
+
+        [Login]
+        [HttpGet]
+        public ActionResult SubscribeDeal(int id)
+        {
+            var deal = new BaseDalService<Deal>().GetItem(id);
+            ViewBag.Details = deal;
+            return View(deal);
+        }
     }
 }

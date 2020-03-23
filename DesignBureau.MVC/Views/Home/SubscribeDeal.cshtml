@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "SubscribeDeal";
+}
+
+<h2>Принять сделку</h2>
+
+@model DesignBureau.Entities.Entity.Deal
+@using (Html.BeginForm("SaveSettings", "Home", FormMethod.Post))
+{
+    if (string.IsNullOrEmpty(ViewBag.Details.Customer))
+    {
+        <fieldset>
+            @Html.HiddenFor(m => m.DealId)
+            <p>
+                @Html.LabelFor(m => m.DealName, "Название")
+                <br />
+                @Html.DisplayName((string)ViewBag.Details.DealName)
+            </p>
+            <p>
+                @Html.LabelFor(m => m.Owner, "Владелец")
+                <br />
+                @Html.DisplayName((string)ViewBag.Details.Owner)
+
+            </p>
+            <p>
+                @Html.LabelFor(m => m.Customer, "Исполнитель")
+                <br />
+                @Html.EditorFor(m => m.Customer)
+
+            </p>
+            <p>
+                @Html.LabelFor(m => m.Price, "Цена")
+                <br />
+                @Html.EditorFor(m => m.Price)
+            </p>
+            <p><input type="submit" value="Сохранить" /></p>
+        </fieldset>
+    }
+    else
+    {
+        <p><a href="http://localhost/DesignBureau.MVC/Home/Index">Сделка уже у исполнителя, вернуться</a></p>
+    }
+}

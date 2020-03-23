@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "CreateDeal";
+}
+
+<h2>Создание сделки</h2>
+
+@model DesignBureau.Entities.Entity.Deal
+@using (Html.BeginForm("SaveDeal", "Home", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.DealId)
+        <p>
+            @Html.LabelFor(m => m.DealName, "Название")
+            <br />
+            @Html.EditorFor(m => m.DealName)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Owner, "Владелец")
+            <br />
+            @Html.EditorFor(m => m.Owner)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Customer, "Исполнитель")
+            <br />
+            @Html.EditorFor(m => m.Customer)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Price, "Цена")
+            <br />
+            @Html.EditorFor(m => m.Price)
+        </p>
+        <p><input type="submit" value="Создать" /></p>
+    </fieldset>
+}

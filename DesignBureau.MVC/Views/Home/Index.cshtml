@@ -15,10 +15,10 @@
     <table width="100%">
         <thead>
             <tr>
-                <th>Month</th>
-                <th>Owner</th>
-                <th>Customer</th>
-                <th>Price</th>
+                <th>Название сделки</th>
+                <th>Владелец</th>
+                <th>Исполнитель</th>
+                <th>Стоимость</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
                         <td align="center">@deal.Owner</td>
                         <td align="center">@deal.Customer</td>
                         <td align="center">@deal.Price </td>
-                        <td><a href = "http://localhost/DesignBureau.MVC/Home/Settings/@deal.DealId">редактировать</a></td>
+                        <td><a href="http://localhost/DesignBureau.MVC/Home/Settings/@deal.DealId">редактировать</a></td>
                     </tr>
                 }
                 else
@@ -41,10 +41,16 @@
                         <td align="center">@deal.Owner</td>
                         <td align="center">@deal.Customer</td>
                         <td align="center">@deal.Price </td>
+                        <td><a href="http://localhost/DesignBureau.MVC/Home/SubscribeDeal/@deal.DealId">Подписаться</a></td>
                     </tr>
                 }
             }
-        </tbody>
+            @if (ViewBag.IsAdminSession){
+                <tr style="border-bottom:1pt solid black;">
+                    <td><a href="http://localhost/DesignBureau.MVC/Home/CreateDeal">Создать сделку</a></td>
+                </tr>
+            }
+</tbody>
     </table>
 </body>
 </html>
