@@ -12,12 +12,14 @@ namespace DesignBureau.MVC.Controllers
 {
     public class AuthController : Controller
     {
+        [Anonymous]
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
-
+        [Anonymous]
+        [HttpPost]
         public ActionResult Login(string email, string password)
         {
             if (UserSession.Current != null)
@@ -35,7 +37,7 @@ namespace DesignBureau.MVC.Controllers
             {
                 case WebLoginStatuses.Success:
                     UserSession.Current = UserSession.CreateUserSession(email, password);
-                    return Json(new { status = 0, url = Url.Action("Index", "Home") }, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
+                    return RedirectToAction("Index","Home");
                 default:
                     return Json(new { status = 1, message = "Invalid name or password" }, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
             }

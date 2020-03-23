@@ -40,8 +40,8 @@ namespace DesignBureau.DAL.Services
 
         public User GetWebUserByEmail(string email)
         {
-            var users = _repository.GetAll().Where(x => x.Email == email).ToList();
-            return users.Any() ? users.First() : null;
+            var users = _repository.GetAll();
+            return users.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper());
         }
 
         public User GetWebUserById(int userId)

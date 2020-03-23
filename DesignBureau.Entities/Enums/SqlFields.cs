@@ -16,6 +16,10 @@
         IsLocked = 11,
         Permissions = 12,
         DealName = 13,
-        Owner = 14
+        Owner = 14,
+        Customer = 15,
+        Price = 16,
+        CustomerName = 17,
+        Description = 18
     }
 }

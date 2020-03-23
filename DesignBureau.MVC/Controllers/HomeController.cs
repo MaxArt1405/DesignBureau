@@ -1,5 +1,7 @@
 ﻿using DesignBureau.BLL.Managers;
+using DesignBureau.DAL.Services;
 using DesignBureau.Entities.Entity;
+using DesignBureau.MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +13,29 @@ namespace DesignBureau.MVC.Controllers
 {
     public class HomeController : BaseController
     {
+        [Login]
         [HttpGet]
         public ActionResult Index()
         {
-            var manager = new UserManager();
-            var users = manager.GetUsers();
-            return Json(new { data = users }, "application/json", Encoding.UTF8, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
+            var deals = new BaseDalService<Deal>().GetAll();
+            ViewBag.Deals = deals;
+            ViewBag.IsAdminSession = UserSession.Current.IsAdmin;
             return View();
         }
 
-        public ActionResult Contact()
+        [Admin]
+        [HttpGet]
+        public ActionResult Settings(int id)
         {
-            ViewBag.Message = "Your contact page.";
+            return View(new BaseDalService<Deal>().GetItem(id));
+        }
 
-            return View();
+        [Admin]
+        [HttpPost]
+        public ActionResult SaveSettings(Deal deal)
+        {
+            new BaseDalService<Deal>().Update(deal);
+            return RedirectToAction("Index");
         }
     }
 }

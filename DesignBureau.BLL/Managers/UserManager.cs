@@ -120,7 +120,7 @@ namespace DesignBureau.BLL.Managers
 
         public Login LoginByEmail(string email, string password)
         {
-            var user = _service.GetWebUserByEmail(email.ToUpper());
+            var user = _service.GetWebUserByEmail(email);
             if (user == null)
             {
                 return new Login(WebLoginStatuses.NotExistUser, "User not exists");
@@ -131,6 +131,7 @@ namespace DesignBureau.BLL.Managers
             }
             return new Login(user);
         }
+
         public void LogOut(User user) { }
 
         public void Dispose() { }
